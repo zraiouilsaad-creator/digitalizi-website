@@ -669,13 +669,17 @@ footer.foot {
 }
 
 /* ===== FIX: hover transforms win over reveal.in ===== */
-/* .reveal.in { transform: none } was overriding hover because it came later in file */
-a.scard { display: block; text-decoration: none; color: inherit }
-.scard.reveal.in:hover,
+a.scard { display: block; text-decoration: none; color: inherit; cursor: pointer }
 .scard:hover               { transform: translateY(-6px) !important; border-color: transparent !important; box-shadow: var(--shadow-lg) !important }
-.pcard.reveal.in:hover,
+.scard:hover .scard__ic    { background: var(--ink) !important; color: #fff !important; transform: rotate(-6deg) scale(1.05) !important }
 .pcard:hover               { transform: translateY(-6px) !important; box-shadow: var(--shadow-lg) !important; border-color: transparent !important }
-.wrow.reveal.in:hover      { transform: translateX(6px) !important; border-color: transparent !important; box-shadow: var(--shadow-md) !important }
+.wrow:hover                { transform: translateX(6px) !important; border-color: transparent !important; box-shadow: var(--shadow-md) !important }
+
+/* Force reveal elements visible immediately if JS fails */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal { animation: none }
+}
+.reveal { transition-duration: .6s !important }
 
 /* ===== SERVICE PAGE STYLES ===== */
 .sp-hero {
